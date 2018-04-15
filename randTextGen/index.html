@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../printInPage/pageConsole.css">
+    <style media="screen">
+        .testblock{
+            display: flex;
+            flex-flow:column nowrap;
+            width: min-content;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+        .mainblock{
+            width: 100%;
+            display: flex;
+            flex-flow:row wrap;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div id="consolediv"></div>
+
+    <div class="mainblock">
+
+        <!-- <div class="testblock">
+            <span>rand_logistic</span>
+            <canvas id="canvas1" width="300" height="300"></canvas>
+        </div>
+        <div class="testblock">
+            <span>linear%random</span>
+            <canvas id="canvas2" width="300" height="300"></canvas>
+        </div>
+        <div class="testblock">
+            <span>Math.random</span>
+            <canvas id="canvas3" width="300" height="300"></canvas>
+        </div> -->
+
+    </div>
+
+    <script src="../TemplateEngine/base.js" charset="utf-8"></script>
+    <script src="./gen.js" charset="utf-8"></script>
+    <script src="../printInPage/pageConsole.js" charset="utf-8"></script>
+    <script src="./index.js" charset="utf-8"></script>
+</body>
+</html>

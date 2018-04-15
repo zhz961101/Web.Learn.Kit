@@ -1,0 +1,23 @@
+.consolebody{
+    color: rgb(209, 209, 209);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(64, 24, 2);
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.consolebody .tag{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(5, 153, 2);
+}
+.error .tag{
+    background-color: rgb(173, 45, 45);
+    color: rgb(222, 222, 222);
+}
+.consolebody .content{
+    padding-left: 20px;
+    line-height: 30px;
+    color: rgb(170, 250, 216)
+}
