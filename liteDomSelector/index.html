@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="id123">id=id123 text1 </div>
+    <br/>
+    <div id="id222">id=id222 text2 </div>
+    <br/>
+    <div class="view" id="table">id=table class=view text2</div>
+    <script src="./assets/DomSelector.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var printlog = console.log;
+        var $ = my$;
+        printlog($("#id222"));
+        printlog($("#id222").html($("#id222").html()+'<br/>!!!!!!'));
+        printlog($("#id222").text());
+    </script>
+</body>
+</html>

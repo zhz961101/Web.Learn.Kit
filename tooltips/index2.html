@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>tooltips demo</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        .top1{
+            position: fixed;
+            left:100px;
+            top:150px;
+        }
+        .alert {
+            box-sizing: border-box;
+            /* width: min-content; */
+            height: auto;
+            min-width: 100px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            border-bottom: 2px groove;
+            border-top: 20px solid;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+
+        .alert-error {
+            color: #522227;
+            background-color: #e8a573;
+            border-color: #f26866;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert-warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .alert>.title{
+            float: left;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            opacity: .5;
+            padding: 0;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+            position: relative;
+            top: -20px;
+            left: 5px;
+            color: inherit;
+        }
+
+        .alert>.body{
+            padding: 15px;
+            box-sizing: border-box;
+            border: 0;
+            width: -webkit-fill-available;
+        }
+
+        .alert>.close-button {
+            float: right;
+            font-size: 31px;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            filter: alpha(opacity=20);
+            opacity: .2;
+            padding: 0;
+            padding-left: 20px;
+            cursor: pointer;
+            background: 0 0;
+            border: 0;
+            position: relative;
+            top: -25px;
+            right: 0px;
+            color: inherit;
+        }
+
+        .alert>.close-button:hover {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+            filter: alpha(opacity=50);
+            opacity: .5;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="alert alert-error">
+            <span class="title">title</span>
+            <button class="close-button">&times;</button>
+            <div class="body">
+                some massages show here!
+            </div>
+        </div>
+        <div class="alert alert-info">
+            <span class="title">title</span>
+            <button class="close-button">&times;</button>
+            <div class="body">
+                some massages show here!
+            </div>
+        </div>
+        <div class="alert alert-danger">
+            <span class="title">title</span>
+            <button class="close-button">&times;</button>
+            <div class="body">
+                some massages show here!
+            </div>
+        </div>
+        <div class="alert alert-success">
+            <span class="title">title</span>
+            <button class="close-button">&times;</button>
+            <div class="body">
+                some massages show here!
+            </div>
+        </div>
+        <div class="alert alert-warning">
+            <span class="title">title</span>
+            <button class="close-button">&times;</button>
+            <div class="body">
+                some massages show here!
+            </div>
+        </div>
+        <div class="alert alert-warning">
+            <span class="title">title</span>
+            <button class="close-button">&times;</button>
+            <iframe class="body" style="position: relative;top: -30px;padding:0px;" src="https://www.baidu.com/"></iframe>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        
+    </script>
+</body>
+
+</html>

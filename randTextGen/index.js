@@ -1,3 +1,7 @@
+'use strict';
+var print = function(msg,title){
+    log(title+" : "+msg);
+}
 print("hi console!","Hi");
 print("some one error msg!","error","error");
 // print(rand2(100),"rand2(100)");
