@@ -8,25 +8,27 @@
 > 下面是分别使用几种方法绘制的图像<br>
 
 > 使用JS内置随机数生成器 use time : <=40<br>
-> ![image](https://https://github.com/zhz961101/Web.Learn.Kit/tree/master/randTextGen/img/math.png)
+> ![image](https://github.com/zhz961101/Web.Learn.Kit/blob/master/randTextGen/img/math.png)
 > ```javascript
 > [x,y].RGB = Math.random()
 > ```
 > 使用线性取模随机数生成器 use time : <=80<br>
-> ![image](https://https://github.com/zhz961101/Web.Learn.Kit/tree/master/randTextGen/img/r_liner.png)
+> ![image](https://github.com/zhz961101/Web.Learn.Kit/blob/master/randTextGen/img/r_liner.png)
 > ```javascript
 > [x,y].RGB = randOne()
 > ```
 > 使用logistic模型随机数生成器 use time : >=100<br>
-> ![image](https://https://github.com/zhz961101/Web.Learn.Kit/tree/master/randTextGen/img/r_logistic.png)
+> ![image](https://github.com/zhz961101/Web.Learn.Kit/blob/master/randTextGen/img/r_logistic.png)
 > ```javascript
 > [x,y].RGB = rand_logistic()
 > ```
 > 使用正确logistic模型随机数生成器 use time : >=120<br>
-> ![image](https://https://github.com/zhz961101/Web.Learn.Kit/tree/master/randTextGen/img/r_lowlogistic.png)
+> ![image](https://github.com/zhz961101/Web.Learn.Kit/blob/master/randTextGen/img/r_lowlogistic.png)
 > ```javascript
 > [x,y].RGB = rand_lowlogistic()
 > ```
+
+> 容易看出线性取模出现了明显的“沟壑”，而纯虫口模型生成的图形在色彩空间不均匀（深色的更深浅色的更浅，当然不单单是看出来的），效果最好的是lowlogistic和js自带随机数生成器
 
 > todo:
 > <br> 用马克洛夫链完成真正的随机文本生成
