@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * get [0,1] random number
+ * @return {Number}  - random number
+ */
 var randOne = (function() {
     let seed = new Date().getTime();
     return function rnd() {
@@ -7,6 +11,11 @@ var randOne = (function() {
     };
 })();
 
+/**
+ * get A random integer with a set upper limit will be obtained
+ * @param {Number} - upper limit
+ * @return {Number} - [0,upper] random number
+ */
 var rand2 = (function() {
     var today = new Date();
     var seed = today.getTime();
@@ -25,15 +34,23 @@ var randBool = function(){
     return randOne()>=0.5?true:false;
 };
 
+/**
+ * [description]
+ * @param  {Array} Strlist
+ * @return {object}  - Random one in an array
+ */
 var randList = function(Strlist){
     let maxPos = Strlist.length;
     return Strlist[rand2(maxPos-1)];
 }
 
-// x_(n+1)=ax_n(1-x_n)
-// 0<x0<1
-// n>1
-// 3.57<a<4
+/**
+ * logistic model random iterator
+ * @param  {Number} a  Parameter
+ * @param  {Number} n  Parameter
+ * @param  {Number} x0 Parameter
+ * @return {Number} - When x0 is less than 1 greater than 0, a is greater than 3.57 less than 4,the next number is unpredictable.
+ */
 var logistic = function(a,n,x0){
     if(n===0){
         return x0;
@@ -114,23 +131,6 @@ var rand_ss_logistic = function(){
     }
     return rand_ss_logistic();
 }
-// 0.162 0.076 0.087 0.083 0.049 0.065 0.077 0.09 0.101 0.21
-// 0.186 0.076 0.083 0.07 0.063 0.054 0.082 0.086 0.098 0.202
-// 0.171 0.085 0.081 0.062 0.071 0.057 0.076 0.092 0.101 0.204
-// 0.164 0.077 0.086 0.083 0.05 0.065 0.076 0.089 0.1 0.21
-// 0.173 0.084 0.081 0.061 0.072 0.057 0.075 0.093 0.1 0.204
-// 0.189 0.085 0.077 0.074 0.05 0.083 0.056 0.081 0.095 0.21
-// 0.174 0.085 0.083 0.059 0.07 0.059 0.074 0.093 0.099 0.204
-// 0.161 0.075 0.088 0.082 0.051 0.064 0.077 0.09 0.102 0.21
-// 0.188 0.078 0.083 0.069 0.061 0.057 0.08 0.084 0.098 0.202
-// 0.161 0.075 0.088 0.084 0.051 0.064 0.077 0.087 0.102 0.211
-// 0.19 0.074 0.083 0.071 0.063 0.055 0.08 0.083 0.1 0.201
-
-//obj{
-//  item1:{content:"...",weight:2},
-//  item1:{content:"!!!",weight:6},
-//  item1:{content:"???",weight:1}
-//}
 var randObj = function(obj){
     let r=randOne();
     let AllW = 0;
@@ -193,7 +193,14 @@ function randomNumStr(len) {
 function firstWUP(Str) {
     return Str[0].toUpperCase() + Str.slice(1)
 }
-
+/**
+ * Generate a sentence at random
+ * @param  {Number} len        - sentence length
+ * @param  {Boolen} toUpper    - if the initials are capitalized
+ * @param  {Number} maxWordlen - max word length
+ * @param  {Number} minWordlen - min ...
+ * @return {String}            - generat results
+ */
 function randomSentence(len, toUpper, maxWordlen, minWordlen) {
     toUpper = toUpper || true;
     len = len || 10;
@@ -210,7 +217,13 @@ function randomSentence(len, toUpper, maxWordlen, minWordlen) {
     }
     return first+res
 }
-
+/**
+ * Generating a segment of random text
+ * @param  {Number} len        - Number of sentences
+ * @param  {Number} maxWordlen - max word length
+ * @param  {Number} minWordlen - min word length
+ * @return {String}            - generat results
+ */
 function randomText(len, maxWordlen, minWordlen) {
     maxWordlen = maxWordlen || 10;
     minWordlen = minWordlen || maxWordlen;

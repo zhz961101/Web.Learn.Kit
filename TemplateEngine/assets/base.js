@@ -1,11 +1,14 @@
-class TemplateEngine{
-    constructor(html){
-        var re = /<%(.+?)%>/g,
+class TemplateEngine {
+    constructor(html, preMark, tailMark) {
+        let fixRegKeyWord = str => str===undefined?null:str.replace(/([$|{|}|(|)|.|\\|*|+|?|^|\||\[|\]])/g, "\\$1");
+        preMark = fixRegKeyWord(preMark) || "<%";
+        tailMark = fixRegKeyWord(tailMark) || "%>";
+        let re = new RegExp(preMark + "(.+?)" + tailMark, "g"),
             reExp = /(^( )?(var|let|if|for|else|switch|case|break|{|}|;))(.*)?/g,
             cursor = 0,
-            code='with(obj) { var r=[];\n',
+            code = 'with(obj) { var r=[];\n',
             match;
-        var add = function(line, js) {
+        let add = function(line, js) {
             js ? (code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n') :
                 (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
             return add;
@@ -17,8 +20,8 @@ class TemplateEngine{
         add(html.substr(cursor, html.length - cursor));
         this.code = (code + 'return r.join(""); }').replace(/[\r\t\n]/g, ' ');
     }
-    joint(options){
-        var result;
+    joint(options) {
+        let result;
         try {
             result = new Function('obj', this.code).apply(options, [options]);
         } catch (err) {

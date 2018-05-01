@@ -48,7 +48,6 @@ template_text:
 ```
 > 小而强大的一个模块，但是并没有编译原理那一套大怪兽，使用的是基于正则匹配的一种简洁取巧的实现方法
 
-> todo:如果有可能我想尝试一下类似vue中的数据绑定，看上去应该并不难
 # MasonryLayout
 ```javascript
 var index_config = {
@@ -79,8 +78,6 @@ console.log(randomText(2,9,2));
 
 > 目前就是一个简单到不能再简单的随机文本生产器
 > <br>其中有一个基于虫口模型的随机数生成器，很魔性，在里面我会针对这个内容再展开，或者写在blog里
-
-> todo:准备运用从weibo爬到的语料做一个马克洛夫链的文本生成器（以后就可以自己给自己的微博评论辣，苦）
 # liteDomSelector
 ```javascript
 my$("#id222").html(my$("#id222").html()+'<br/>!!!!!!');
@@ -89,13 +86,11 @@ my$("#id222").text();
 > 很多时候，我们会思考，jquery不仅好用还好大！明明...我只用了选择器和常用操作...
 > <br/>这个包就是这样的思路，实现（用新的方法、特性）jq中最常用的方法
 
-> todo:更多的方法，至少在下次想用jq的时候可以代替它
 > <br/>tip:这个可能在以后会单独独立出来，已经不是个小工具了啦，并且对前端优化我还有一个大胆的想法。
 # canneJs
 > 哈，这就是大胆的想法
 > 可惜还没开始
 
-> todo:像工厂里的起重机（crane）一样统一调配工地施工设施的安放问题（dom事件管理以及虚拟dom层实现）
 # ProRequest
 ```javascript
 var ajax1 = proRequest({
@@ -122,11 +117,9 @@ ajax2.then((response) => {
     log(errorStr)
 })
 ```
-> 就是简单的把xmlhttprequest封装成了promise的样子
+> 将xmlhttprequest封装成了promise的样子
 > <br/>像ajax，至少就我目前来看日常够用了
-
-> todo:接下来会加入一些支援异步操作的方法，以及类似axios的包装
-# log
+# logTool
 ```javascript
 log("some string");
 log({name:"sanshi",age:18})
@@ -135,11 +128,8 @@ log({name:"sanshi",age:18})
 > 为什么浪费时间写这个呢，主要是最近毕业招聘季，发现写前端代码最要命的就是把时间浪费在打开console上，所以就想到了写一个在网页输出内容的模块
 > <br>并不完整，相对于其他的扳手，这个就是个别针
 
-> todo:优化样式，解析json，简单的高亮
-> <br>注意：print函数被覆盖之前是用来浏览器调用打印机API的，如果你需要这个函数，请修改。
 # web.Object.templ
-> 包含基本的脚手架
-> <br/>以及log函数的实现
+> 包含基本的脚手架（工程化很重要）
 # tooltips
 > 就是一个css实现的小工具
 > <br/>做一些简单易用的多文档框架

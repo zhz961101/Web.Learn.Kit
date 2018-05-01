@@ -15,25 +15,32 @@ var templ = tE1.joint({
 
 var temp2 = `
 	<br/>
-	<% var func = function(text){return "<i>text:</i><span style='color:"+data.color+"'>"+text+"</span>"}; %>
-	<% (function(text){return "<span>text:"+text+"</span>"})("this is a func runing!!!") %>
+	<$ var func = function(text){return "<i>text:</i><span style='color:"+data.color+"'>"+text+"</span>"}; $>
+	<$ (function(text){return "<span>text : "+text+"</span>"})("this is a func runing!!!") $>
 	<br/>
-	<% func("var func runing!") %>
+	<$ func("var func runing!") $>
+`
+var temp3 = `
+	<br/>
+	$$$ var func = function(text){return "<i>text:</i><span style='color:"+data.color+"'>"+text+"</span>"}; ***
+	$$$ (function(text){return "<span>text : "+text+"</span>"})("this is a func runing!!!") ***
+	<br/>
+	$$$ func("var func runing!") ***
 `
 
 $('#app').html(templ);
-var temp2obj = new TemplateEngine(temp2);
+var temp2obj = new TemplateEngine(temp2,"<$","$>");
+var temp3obj = new TemplateEngine(temp3,"$$$","***");
 $('#app2').html(temp2obj.joint({
 		data:{
-			color:"#666",
+			color:"#999",
 
 		}
 	}
 ));
-$('#app2').html($('#app2').html()+temp2obj.joint({
+$('#app2').html($('#app2').html()+temp3obj.joint({
 		data:{
 			color:"rgba(255,0,0,0.7)",
-
 		}
 	}
 ));

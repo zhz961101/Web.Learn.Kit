@@ -1,6 +1,6 @@
-var printlog = console.log;
-let _strict = true;
-let _modleDebugOn = true;
+let printlog = console.log;
+let _strict = true; // dont use document.querySelector
+let _modleDebugOn = true; // open some debug console log call
 var my$ = (function() {
     let addHtmlFunction = function() {
         this.html = function(_newHtml) {
@@ -87,4 +87,6 @@ var my$ = (function() {
             return targets;
         }
     }
-}())
+}());
+
+window.my$ = my$;
