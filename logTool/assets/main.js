@@ -61,7 +61,7 @@ function log(s) {
     }
     p.innerHTML = "## <small>TimeStamp:</small>" + getTimeStamp()
     printObj(s);
-    p.innerHTML += "<br/> >> <small>EOF</small>";
+    p.innerHTML += "<br/> >> <small>EOF</small><hr/>";
     logging.appendChild(p);
     window.scrollTo(0, document.body.scrollHeight);
 }

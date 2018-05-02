@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="#">CLICK!!!</a>
+    <div id="test-log"></div>
+    <script src="../logTool/dist/bundle.min.js" charset="utf-8"></script>
+    <script src="./assets/main.js" charset="utf-8"></script>
+    <script src="./assets/index.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        let anonyFuncDecorator = function(func){
+            if (typeof func !== 'function') {
+                throw new Error('just work for an function')
+                return
+            }
+            if(func.name){
+                return func;
+            }
+            let anonyFunction = function(){
+                return func();
+            }
+            return anonyFunction;
+        }
+        let printFuncName = func => log(func.name);
+        printFuncName(anonyFuncDecorator(anonyFuncDecorator));
+        printFuncName(anonyFuncDecorator(()=>{}));
+        printFuncName(anonyFuncDecorator);
+        printFuncName(()=>{});
+        printFuncName(function(){});
+        printFuncName(anonyFuncDecorator(function(){}));
+    </script>
+</body>
+</html>

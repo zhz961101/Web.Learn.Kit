@@ -3,13 +3,13 @@
     "data":{
         "booklist":[
             {
-                "name":"ml实战",
+                "name":"Machine Learning 实战",
                 "tag":"machine"
             },
             {
                 "name":"sicp",
                 "tag":"lisp"
-            }
+            },
         ],
-    }
+    },
 }

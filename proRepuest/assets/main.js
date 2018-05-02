@@ -1,27 +1,26 @@
 'use strict';
 
-log("runing!");
-// test log tool
-
 /**
  * XMLHttpRequest factory
  * @param  {String} method            - http method name["GET","POST","PUT","DELETE"]
  * @param  {String} url               - Request address
  * @param  {String} dataStr           - Request param(JSON string)
  * @param  {Boolean} Async            - if open asynchronous execution
+ * @param  {String} contentType       - http contentType
  * @param  {function} callback_sucess - run the function when resquest been sucess
  * @param  {function} callback_error  - run the function when resquest been errors
  * @return {void}
  */
-var request = function(method, url, dataStr, Async, callback_sucess, callback_error) {
+var request = function(method, url, dataStr, Async, contentType, callback_sucess, callback_error) {
     this.xmlhttp = null;
-    this.data = null;
-    this.statusText = null;
+    this.contentType = contentType || "text/plain;charset=UTF-8";
+
+    Async = Async || true;
+    method = method.toUpperCase() || "GET";
 
     function isJSON(str, pass_object) {
-        let typeNameof = obj => Object.prototype.toString.call(obj);
         let isString = function(str) {
-            return typeNameof(str) === typeNameof("");
+            return typeof str === typeof "";
         }
 
         if (pass_object && isObject(str)) return true;
@@ -56,6 +55,7 @@ var request = function(method, url, dataStr, Async, callback_sucess, callback_er
     let JSONdecorator = function(__func) {
         return function(_response) {
             if (isJSON(_response)) {
+                _response = _response.replace(/(?<!".+?) /g,"").replace(/\n|\r/g,"").replace(/,(}|])/g,"$1");
                 __func(JSON.parse(_response));
             } else {
                 __func(_response);
@@ -63,6 +63,7 @@ var request = function(method, url, dataStr, Async, callback_sucess, callback_er
         }
     }
     this.stateChange = function() {
+        // this => XMLHttpRequest Object
         if (this.readyState == 4) { // 4 = "loaded"
             if ((this.status >= 200 && this.status < 300) || (this.status == 304) || (this.status == 0)) { // 200 = OK
                 let data = this.responseText;
@@ -94,10 +95,13 @@ var request = function(method, url, dataStr, Async, callback_sucess, callback_er
         }
     };
     let _finally = function(that, method, url, dataStr, Async) {
-        Async = Async || true;
-        method = method.toUpperCase() || "GET";
         that.xmlhttp.open(method, url, Async);
-        that.xmlhttp.send(null);
+        if(method !== "GET"){
+            that.xmlhttp.setRequestHeader('Content-Type',that.contentType)
+            that.xmlhttp.send(dataStr);
+        }else{
+            that.xmlhttp.send(null);
+        }
     };
 
     this._init(callback_sucess, callback_error);
@@ -114,28 +118,6 @@ var request = function(method, url, dataStr, Async, callback_sucess, callback_er
  */
 var proRequest = function(_config) {
     return new Promise(function(resolve, reject) {
-        new request(_config.method || "GET", _config.url, _config.data || null, _config.async, resolve, reject)
+        new request(_config.method , _config.url, _config.data , _config.async, resolve, reject)
     })
 }
-
-var ajax1 = proRequest({
-    method: "GET",
-    async: true,
-    url: "./assets/test10.json"
-});
-ajax1.then((response) => {
-    log(response);
-}).catch((errorStr) => {
-    log(errorStr)
-})
-
-var ajax2 = proRequest({
-    method: "GET",
-    async: true,
-    url: "./assets/text1.txt"
-});
-ajax2.then((response) => {
-    log(response);
-}).catch((errorStr) => {
-    log(errorStr)
-})
