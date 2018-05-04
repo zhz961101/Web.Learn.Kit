@@ -2,15 +2,15 @@
 // 记录当前这所有的代理方法
 let actionsCollection = [];
 
-let anonyFunctionDecorator = function(func){
+let anonyFunctionDecorator = function(func) {
     if (typeof func !== 'function') {
         throw new Error('just work for an function')
         return
     }
-    if(func.name){
+    if (func.name) {
         return func;
     }
-    let anonyFunction = function(){
+    let anonyFunction = function() {
         return func();
     }
     return anonyFunction;
@@ -38,13 +38,11 @@ class Delegate {
         // 如果不是匿名函数 则记录当前的事件
         // tag 该事件绑定的标签
         // type 记录触发类型
-        if (funcName) {
-            actionsCollection.push({
-                name: funcName,
-                tag: aimTag,
-                type: type
-            })
-        }
+        actionsCollection.push({
+            name: funcName,
+            tag: aimTag,
+            type: type
+        })
 
         this.el.addEventListener(type, e => {
             if (e.target && e.target.nodeName.toUpperCase() === aimTag) {
@@ -64,24 +62,25 @@ class Delegate {
 
     // type 事件类型
     // actionName 需要移除的函数名
-    off(type, actionName) {
+    off(type, aimTagName, actionName) {
         let temp = []
+        aimTagName = aimTagName ? aimTagName.toUpperCase() : this.tag;
         // 不传入参数 将移除改元素上所有的事件
         if (!arguments.length) {
             actionsCollection.map(func => {
-                if (func.tag !== this.tag) temp.push(func)
+                if (func.tag !== aimTagName) temp.push(func)
             })
         } else {
             // 如果只传入 type 将移除这个元素上的所有 type 事件
             if (!actionName) {
                 actionsCollection.map(func => {
-                    if (func.tag !== this.tag ||
+                    if (func.tag !== aimTagName ||
                         func.type !== type) temp.push(func)
                 })
             } else {
                 // 同时传入两个参数 将移除这个元素上对应 type 的对应事件
                 actionsCollection.map(func => {
-                    if (func.tag !== this.tag ||
+                    if (func.tag !== aimTagName ||
                         func.type !== type ||
                         func.name !== actionName) temp.push(func)
                 })

@@ -47,6 +47,7 @@ template_text:
 </div>
 ```
 > 小而强大的一个模块，但是并没有编译原理那一套大怪兽，使用的是基于正则匹配的一种简洁取巧的实现方法
+> <br> 支持关键字自定义（要是定义成${和}的话效果和ES7的模板一模一样...）
 
 # MasonryLayout
 ```javascript
@@ -90,6 +91,33 @@ my$("#id222").text();
 # canneJs
 > 哈，这就是大胆的想法
 > 可惜还没开始
+
+# overloadJs
+### 链式实现（总是运行最新的重载方式）
+```javascript
+var funcobj = {
+    logstr : function(){
+        log("funcobj say:pls use some arguments!!!");
+    }
+}
+
+overloadMethod_1(funcobj,funcobj.logstr,function(str){
+    log(str);
+})
+
+// 重载自身 已包含源码中
+overloadMethod_1(window,overloadMethod_1.name,function (Method, fn) {
+    overloadMethod_1(window,Method.name,fn);
+})
+```
+### 扩展重载表实现
+```javascript
+overloadMethod_2(window,log,function(str){
+    console.log(str);
+})
+```
+> 函数参数个数重载
+> <br>重载表这个用的很爽，就是不优雅...
 
 # ProRequest
 ```javascript
