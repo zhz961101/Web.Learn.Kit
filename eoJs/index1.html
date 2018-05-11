@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"><button data-id=22223>***</boutton></div>
+    <script type="text/javascript">
+        let $ele = document.querySelector("#app")
+        let sign = (function(){
+            let sign_list = []
+            return function(target,id){
+                sign_list.push({target:target,id:id})
+                console.log(sign_list)
+            }
+        })()
+        document.addEventListener("click",(e)=>{
+            let $target = e.target
+            let id = $target.getAttribute("data-id")
+            console.log(e)
+            sign($target,parseInt(id))
+            if(parseInt(id)===22223){
+                console.log($target);
+                console.log(id)
+                console.log(typeof id)
+            }
+        })
+    </script>
+</body>
+</html>

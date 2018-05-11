@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="id123" data-id=66>id=id123 text1 data-id=66</div>
+    <br/>
+    <div id="id222">id=id222 text2 </div>
+    <br/>
+    <div class="view" id="table">id=table class=view text2</div>
+    <ul>
+        <il class="ulsub">0001</il>
+        <il class="ulsub">0002</il>
+        <il class="ulsub">0003</il>
+        <il class="ulsub">0004</il>
+        <il class="ulsub">0005</il>
+    </ul>
+    <script src="./assets/main.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var _log = console.log;
+        var $ = my$;
+        _log($("#id222"));
+        _log($("#id222").html($("#id222").html() + '<br/>!!!!!!'));
+        _log($("#id222").text());
+        _log($("#id123").data("id"))
+        _log($(".ulsub"))
+        $(".ulsub").Each((ele, index) => {
+            _log($(ele).text());
+        })
+    </script>
+</body>
+
+</html>
