@@ -1,10 +1,4 @@
-# OBJECT name
+# eojs
 
-> some describe
+> 废弃
 > <br> other line
-
-> todo:
-> <br> other line
-
-> log
-> <br> updata log

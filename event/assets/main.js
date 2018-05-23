@@ -1,5 +1,4 @@
-let $ = my$;
-
+'use strict';
 let myEvent = (()=>{
     let subscribe = {}
     let isFunction = (obj)=>{

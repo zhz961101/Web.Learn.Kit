@@ -1,9 +1,12 @@
 'use strict';
+var $ = my$
 
 console.log($("#app")[0])
 _init_native($("#app")[0])
 
-myEvent.on("9527",()=>{
+var $on = myEvent.on
+
+$on("9527",()=>{
     log("9527!!!channel!!!")
 })
 myEvent.on("9527",()=>{

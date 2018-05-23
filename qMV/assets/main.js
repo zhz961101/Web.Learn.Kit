@@ -64,49 +64,22 @@ class Ele {
     _bindSetter(that) {
         for (let variable in this.data) {
             let oldV = this.data[variable];
+            let option = {}
             if (typeof oldV === "function") {
-                Object.defineProperty(this.data, variable, {
-                    get: () => {
-                        return oldV(that.data);
-                    }
-                })
-            } else {
-                Object.defineProperty(this.data, variable, {
-                    get: () => {
-                        return this[variable];
-                    }
-                })
-            }
-            Object.defineProperty(this.data, variable, {
-                set: (val) => {
-                    this[variable] = val;
-                    that._updata();
+                option.get = () => {
+                    return oldV(that.data);
                 }
-            })
+            } else {
+                option.get = () => {
+                    return this[variable];
+                }
+            }
+            option.set = newVal => {
+                this[variable] = newVal;
+                that._updata();
+            }
+            Object.defineProperty(this.data, variable, option)
             this.data[variable] = oldV;
         }
     }
 }
-
-let tpl_text2 = `
-<br><span style="color:red"><% typeName %>Now time:<% time %><span><br>
-`
-
-let ele1 = new Ele("#app2", {
-    typeName: "Clock!!!",
-    time: (self) => {
-        return self.typeName + new Date().toLocaleTimeString()
-    }
-}, tpl_text2)
-//
-// setInterval(()=>{
-//     ele1.data.time = new Date().toLocaleTimeString();
-// },1000)
-
-setInterval(() => {
-    ele1.data.typeName = "NOW!!!";
-}, 1000)
-
-setInterval(() => {
-    ele1.data.typeName = "HAPPY!!!";
-}, 3000)
