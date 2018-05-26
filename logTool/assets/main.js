@@ -15,14 +15,15 @@ let _startTimeStamp = new Date().getTime();
  */
 function log(s) {
     var p = document.createElement('p');
-    let preLog = (msg)=>{
-        return msg.replace(/</g,"&lt;").replace(/>/g,"&gt;")
-    }
-    s = preLog(s)
     let isObject = (obj) => {
         return typeof obj === typeof {};
     }
     let printLine = (msg, brOn) => {
+        console.log(typeof msg)
+        let prePrint = (_msg)=>{
+            return _msg.toString().replace(/</g,"&lt;").replace(/>/g,"&gt;")
+        }
+        msg = prePrint(msg)
         p.innerHTML += (brOn !== false ? "<br/>⇒ " : "") + "<span style='font-weight:bold'>" + msg + "</span>";
     }
     /**
