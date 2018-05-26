@@ -56,18 +56,18 @@ class Ele {
         this.data = deepClone(_data) || {}
         this.tpl = new TemplateEngine(_template ? _template : $(_el).html);
         this._updata();
-        this._bindSetter(this);
+        this._bindSetter();
     }
     _updata() {
         $(this.ele).html(this.tpl.joint(this.data));
     }
-    _bindSetter(that) {
+    _bindSetter() {
         for (let variable in this.data) {
             let oldV = this.data[variable];
             let option = {}
             if (typeof oldV === "function") {
                 option.get = () => {
-                    return oldV(that.data);
+                    return oldV(this.data);
                 }
             } else {
                 option.get = () => {
@@ -76,7 +76,7 @@ class Ele {
             }
             option.set = newVal => {
                 this[variable] = newVal;
-                that._updata();
+                this._updata();
             }
             Object.defineProperty(this.data, variable, option)
             this.data[variable] = oldV;
