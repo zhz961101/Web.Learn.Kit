@@ -19,9 +19,8 @@ function log(s) {
         return typeof obj === typeof {};
     }
     let printLine = (msg, brOn) => {
-        console.log(typeof msg)
         let prePrint = (_msg)=>{
-            return _msg.toString().replace(/</g,"&lt;").replace(/>/g,"&gt;")
+            return String(_msg).replace(/</g,"&lt;").replace(/>/g,"&gt;")
         }
         msg = prePrint(msg)
         p.innerHTML += (brOn !== false ? "<br/>⇒ " : "") + "<span style='font-weight:bold'>" + msg + "</span>";
