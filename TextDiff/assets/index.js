@@ -13,18 +13,28 @@ let t_a = `<div id="test-log"></div><script src="../logTool/dist/bundle.min.js" 
 
 let t_b = `<div id="test-log"></div><script src="" charset="utf-8"></script><script src="./assets/main.js" charset="utf-8"></script><script src="./assets/index.js" charset="utf-8"></script>`
 
+let res = _lcsdiff(t_a, t_b);
+log(res)
+console.log(res);
+
 // log(difText(t_a, t_b))
 
 // log(LCCS(t_a, t_b))
 
-log(LCS("GCCCT", "GATCTTCCCT"))
-
-log(lcsDiff("GCCCT", "GATCTTCCCT"))
-
-log(lcsDiff("GCTCCT", "GATCATTTCCCT"))
+// log(LCS("GCCCT", "GATCTTCCCT"))
+//
+// log(lcsDiff("GCCCT", "GATCTTCCCT"))
+//
+// log(lcsDiff("GCTCCT", "GATCATTTCCCT"))
 
 let mDna1 = "gtgataacctaccgggaggtgttggagaccggggcggcgcgagcagggagccgggaggaggcggccgcgg"
 
-let mDna2 = "gtgataacctaccgggaggtgttggtagcagaccggggcggcgcgagcagggagccgggaggaggtacggccgcgg"
+let mDna2 = "gtgataacctaccgggaggtgttggtagcagaccggggcggcgcgagcagggagccgggaggaggtacggccgcggaaaaa"
 
-log(lcsDiff(mDna1, mDna2))
+res = _lcsdiff(mDna1, mDna2);
+log(res);
+console.log(res);
+
+res = _lcsdiff("[1, 1, 1, 2, 2, 2, 2, 2, 2, 3]", "[1, 1, 1, 2, 3, 3, 3, 3, 3, 3]");
+log(res);
+console.log(res);
