@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tmp.html</title>
+    <style>
+        .content {
+            background-color: #bfbfbf;
+            height: 500px;
+        }
+        .obj {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            /*margin: 10 auto;*/
+            border: 1px solid green;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content" id="obja"></div>
+        <div class="obj" id="objb"></div>
+        <p id="para"></p>
+    </div>
+    <script>
+        var flag = false;
+        var sx, sy, cx, cy, dx, dy;
+        var obj = document.getElementById("objb");
+        if(obj.addEventListener) {
+            obj.addEventListener('mousedown', function(event) {dragStart(event);}, false);
+            obj.addEventListener('mousemove', function(event) {dragMove(event);}, false);
+            document.body.addEventListener('mouseup', function(event) {dragEnd(event);}, false);
+        }
+        else if(obj.attachEvent){
+            obj.attachEvent('onmousedown', function(event) {dragStart(event);});
+            obj.attachEvent('onmousemove', function(event) {dragMove(event);});
+            document.body.attachEvent('onmouseup', function(event) {dragEnd(event);});
+        } else {
+            obj['onmousedown'] = function(event) {dragStart(event);}
+            obj['onmousemove'] = function(event) {dragMove(event);}
+            obj['onmouseup'] = function(event) {dragEnd(event);}
+        }
+
+        function dragStart(event) {
+            flag =true;
+            sx = event.clientX;
+            sy = event.clientY;
+            dx = obj.offsetLeft;
+            dy = obj.offsetTop;
+        }
+        function dragMove(event) {
+            if(flag) {
+                cx = event.clientX;
+                cy = event.clientY;
+                obj.style.left = cx - sx + dx + 'px';
+                obj.style.top = cy - sy + dy + 'px';
+                if(event.preventDefault) {
+                    document.addEventListener("mousemove", function(){
+                        event.preventDefault();
+                    }, false);
+                } else {
+                    document.attachEvent("onmousemove", function(){
+                        window.event.returnValue = false;
+                    });
+                }
+            }
+
+        }
+        function dragEnd(event) {
+            flag = false;
+        }
+    </script>
+</body>
+</html>
