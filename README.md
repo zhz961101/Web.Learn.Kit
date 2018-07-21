@@ -1,4 +1,4 @@
-<center><h1>🌚README🌝</h1></center>
+<h1 align = "center">🌚README🌝</h1>
 
 终于，还是看不下去，最近暑期准备面试的期间也整理，回顾一下以前的垃圾，说不定捡到宝呢，嘿嘿（用git写笔记，还行）
 
@@ -33,13 +33,12 @@ emoji | 意义 | 哼哈
 # ⚓🔨json-db
 也算后端内容吧，关于GraphQL的一些摸索
 
-
-<center>
+<div align=center>
     <h1>
-    Afterword
+        Afterword
     </h1>
     `Code For Fun`
     <br>写代码最要紧的还是`开心`😵
     <br>
     🌑🌒🌓🌔🌕🌖🌗🌘🌑
-</center>
+</div>
