@@ -52,5 +52,8 @@ cordova platform ls
 ```
 打包
 ```
-cordova build android
+cordova build android --debug
+```
+```
+cordova build android --release --browserify
 ```

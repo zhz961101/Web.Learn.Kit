@@ -79,6 +79,12 @@ document.addEventListener('deviceready', ()=>{},false)
 >
 > Release打包：运行cordova build android --release --browserify，不仅打包js文件，还压缩。
 
+> cordova minify 最新版（虽然是两年前）的增加了imagemin的支持，所以还需要增加这个依赖
+
+```
+npm install -D clean-css html-minifier uglify-js imagemin imagemin-svgo imagemin-jpegtran imagemin-gifsicle imagemin-optipng
+```
+
 # F7 3.x
 
 下面列出一些新旧教程不同的地方
