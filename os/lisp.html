@@ -1,0 +1,287 @@
+<html>
+
+<head>
+    <title></title>
+    <style>
+        pre {
+            border: 3px solid #b6b6b6;
+        }
+    </style>
+</head>
+
+<body>
+    SICP
+</body>
+<script>
+    // number
+    1;
+    1.1;
+    //define
+    "(define a 1)"
+    "a"
+    //开方
+    function sqrt(n) {
+        return startTry(1)
+
+        function startTry(guess) {
+            if (closed(guess)) return guess;
+            return startTry(impove(guess))
+        }
+
+        function impove(guess) {
+            return (guess + n / guess) / 2.0; //牛顿法的变形
+            //可选 二分法
+            //递归的迭代形式  容易理解
+            /**
+            迭代形式  熟悉的
+            var guess
+            while( !closed(guess)){
+            guess= impove(guess)
+            }
+            return guess
+            **/
+        }
+
+        function closed(guess) {
+            return Math.abs(guess * guess - n) / n < 0.001 //误差比例
+            return Math.abs(guess * guess - n) < 0.001 //绝对值
+        }
+    }
+    sqrt(2)
+    "---------------------------------------------------------"
+    //语言实现
+    var l = (
+        function() {
+            var context = {}
+            context["+"] = function(param) {
+                return param.map(function(a) {
+                    return a - 0; //转数字
+                }).reduce(function(a, b) {
+                    return a + b
+                });
+            }
+            context["-"] = function(param) {
+                return param.map(function(a) {
+                    return a - 0; //转数字
+                }).reduce(function(a, b) {
+                    return a - b
+                });
+            }
+            context["*"] = function(param) {
+                return param.map(function(a) {
+                    return a - 0; //转数字
+                }).reduce(function(a, b) {
+                    return a * b
+                });
+            }
+            context["/"] = function(param) {
+                return param.map(function(a) {
+                    return a - 0; //转数字
+                }).reduce(function(a, b) {
+                    return a / b
+                });
+            }
+            context[">"] = function(a) {
+                if (a[0] > a[1]) return "#t";
+                return "#f"
+            }
+            context["<"] = function(a) {
+                if (context[">"](a) == "#t") return "#f";
+                return "#t"
+            }
+            //有一项为假即为假
+            context["and"] = function(a) {
+                if (a.length > 1) {
+                    if (a[0] == "f") return "f"
+                    a.shift();
+                    return context["and"](a)
+                }
+                return a[0]
+            }
+            //有一项为真即为真
+            context["or"] = function(a) {
+                if (a.length > 1) {
+                    if (a[0] == "#t") return "#t"
+                    a.shift();
+                    return context["or"](a)
+                }
+                return a[0]
+            }
+            //有一项为真即为真
+            context["if"] = function(a) {
+                if (a.length != 3) throw "use as (if a b c)"
+                if (a[0] == "#t") return a[1]
+                return a[2]
+            }
+            //删除 可以添加类似垃圾回收机制
+            context["del"] = function(key) {
+                context[key] = undefined
+            }
+            context["define"] = function(param) {
+                var key = param[0];
+                var value = param[1];
+
+
+                if (isProcess(key)) {
+                    var newkey = read_S_exp(key).name;
+                    if (typeof context[newkey] !== 'undefined') {
+                        throw "redefine error";
+                    }
+                    //构造成函数
+                    var vs = "newkey=function(" + read_S_exp(key).pra.join(",") + "){return l('" + value + " ')}"
+                    context[newkey] = window.eval(vs) //函数可以重复定义吗？
+                    context[newkey].pra = read_S_exp(key).pra
+                    context[newkey].toString = function() { /**or key+value**/
+                        return "com Process"
+                    }
+                    context[newkey].toString = function() {
+                        return key + value
+                    }
+                    return " com Process";
+                }
+                //未定义
+                if (typeof context[key] === 'undefined') {
+                    var value = eval(param[1]);
+                    context[key] = value;
+                    return context[key];
+                } else {
+                    //重复定义错误
+                    throw "redefine error";
+                }
+            }
+            return eval;
+
+            function eval(s) {
+                if (!s.trim) return s;
+                s = s.trim();
+                if (context[s]) return context[s];
+                // 词法分析和语法分析混在一起
+                var type = whatType(s);
+                if (type == "number") return s - 0; //codegen  & jit
+                else if (type == "bollen") return s;
+                else if (type == "Process") {
+                    var nameAndPra = read_S_exp(s)
+                    //return "Process is "+nameAndPra.name+":"+nameAndPra.pra;
+
+                    var ap = nameAndPra.pra
+                    if (nameAndPra.name != "define") { //应用序
+
+                        for (var j = 0; j < ap.length; j++) {
+                            ap[j] = eval(ap[j])
+                        } //end for
+                    }
+
+
+                    if (context[nameAndPra.name]) { //存在函数
+                        if (context[nameAndPra.name].pra) {
+
+                            //函数参数和应用参数
+                            var fp = context[nameAndPra.name].pra;
+                            var length = fp.length
+                            if (length != ap.length) {
+                                throw "参数不匹配"
+                            }
+                            //绑定运行空间
+                            for (var j = 0; j < length; j++) {
+                                var ds = [];
+                                ds.push(fp[j]); //key 可以增加命名空间 产生新的产生新的上下文
+                                ds.push(ap[j]);
+                                context["define"](ds)
+                            } //end for
+
+                        }
+                        var rt = context[nameAndPra.name](nameAndPra.pra); //应用参数  单参数   参数数组 .apply
+                        //销毁运行临时变量
+                        if (context[nameAndPra.name].pra) {
+                            for (var j = 0; j < length; j++) context["del"](fp[j])
+                        }
+                        return rt
+                    } //end  存在函数
+                    throw nameAndPra.name + " : is not Defined"
+                } //end type == "Process"
+                throw s + " : is not Defined"
+            }
+            //返回类型
+            function whatType(s) {
+                if (IsNum(s)) return "number";
+                if (isProcess(s)) return "Process";
+                if (IsBlooen(s)) return "bollen"
+            }
+            //判断是否是数字类型
+            function IsNum(s) {
+                if (s != null && s != "") {
+                    return !isNaN(s);
+                }
+                return false;
+            }
+            //判断是否是数字类型
+            function IsBlooen(s) {
+                return "#t" == s || "#f" == s;
+            }
+            //判断是否是过程调用
+            function isProcess(s) {
+                return isStartQuto(s) && isEndQuto(s);
+            }
+            //开始是括号
+            function isStartQuto(s) {
+                var start = s.charAt(0)
+                return "(" === start
+            }
+
+            function isEndQuto(s) {
+                var end = s.charAt(s.length - 1);
+                return ")" === end
+            }
+            //读取一个s表达式  name是函数  pra是参数
+            function read_S_exp(exp) {
+
+                var nameAndPra = {
+                    name: "",
+                    pra: []
+                };
+                //去掉首尾的括号 和多余空格
+                var a = exp.substr(1, exp.length - 2).split(" ").filter(function(data) {
+                    return data !== "" && data !== " "
+                })
+                // 开始而没有闭合的括号数量
+                var startQutoNotClosedNum = 0
+                var s, stack = [];
+                for (var i = 0; i != a.length; i++) {
+                    s = a[i];
+                    stack.push(s);
+                    if (isStartQuto(s)) {
+                        startQutoNotClosedNum++;
+                    } else if (isEndQuto(s)) {
+                        startQutoNotClosedNum--;
+                    }
+                    if (startQutoNotClosedNum === 0) {
+                        if (!nameAndPra.name) {
+                            nameAndPra.name = stack.join(" ")
+                        } else
+                            nameAndPra.pra.push(stack.join(" "));
+                        stack = [];
+                    } else if (startQutoNotClosedNum < 0) {
+                        throw stack.join(" ") + " : has not a closed )"
+                    }
+                }
+                return nameAndPra;
+            }
+        }()
+    )
+    l("(define (abs x) (if (< x 0) (- 0 x) x) )")
+    //"com Process"
+    l("(abs 1)")
+    var cs = "(define (closed? guess x) (> 1  guess ) )"
+    l(cs)
+</script>
+
+
+<script>
+    // 在页面上显示
+    var s = document.getElementsByTagName("script")[0].innerText
+    document.write("<pre>")
+    document.write(s)
+    document.write("</pre>")
+</script>
+
+</html>

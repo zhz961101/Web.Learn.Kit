@@ -140,3 +140,16 @@ var app = new Framework({
 ```
 
 内部调用没有太大变化，主要是初始化不同，看[文档](https://framework7.io/docs/app.html#app-parameters)，多思考
+
+### immersiveMode
+沉浸app，移动端，没有沉浸式基本就和高端两个字无缘了，这属于必修课
+
+找了网上csdn很多教程，都需要改原生java，虽说不复杂，但是总感觉...额
+
+找到了[这个](https://github.com/mesmotronic/cordova-plugin-fullscreen)，安卓端的沉浸插件，也没有测试机，暂时不考虑ios
+
+安装
+> cordova plugin add cordova-plugin-fullscreen
+
+调用
+> AndroidFullScreen.immersiveMode(successFunction, errorFunction);
