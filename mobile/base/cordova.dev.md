@@ -3,6 +3,10 @@
 
 > 2.Pls!Carefully before debug the [Document](https://framework7.io/docs/) (NOT CN)!
 
+插件问题看ionic的一些内容也很有帮助
+
+> http://www.ionic.wang/ng_cordova-index.html
+
 # devlop log
 爬坑记录
 
@@ -144,6 +148,10 @@ var app = new Framework({
 ### immersiveMode
 沉浸app，移动端，没有沉浸式基本就和高端两个字无缘了，这属于必修课
 
+全屏，最简单的沉浸，没有状态栏，在config.xml里设置
+```
+<preference name="Fullscreen" value="True" />
+```
 找了网上csdn很多教程，都需要改原生java，虽说不复杂，但是总感觉...额
 
 找到了[这个](https://github.com/mesmotronic/cordova-plugin-fullscreen)，安卓端的沉浸插件，也没有测试机，暂时不考虑ios
@@ -153,3 +161,13 @@ var app = new Framework({
 
 调用
 > AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+
+状态栏全透明
+```
+cordova plugin add cordova-plugin-statusbar
+```
+config.xml
+```
+<preference name="StatusBarBackgroundColor" value="transparent" />
+<preference name="StatusBarOverlaysWebView" value="true" />
+```

@@ -30,15 +30,21 @@ emoji | 意义 | 哼哈
 # ⚓🚧Docker
 因为想做oj才开始了解，之前倒是听过，可是没觉得有什么奇异点，现在摸出来看看，干哦！超棒的！
 
+# ⚓🚧OS
+更加后台的一些东西，还有嵌入式相关的勉勉强强的内容
+
 # ⚓🔨json-db
 也算后端内容吧，关于GraphQL的一些摸索
+
+# 🔨Hpi
+Hack api
 
 <div align=center>
     <h1>
         Afterword
     </h1>
-    `Code For Fun`
-    <br>写代码最要紧的还是`开心`😵
+    # Code For Fun #
+    <br>写代码最要紧的还是 # 开心 # 😵
     <br>
     🌑🌒🌓🌔🌕🌖🌗🌘🌑
 </div>

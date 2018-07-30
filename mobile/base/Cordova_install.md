@@ -42,6 +42,10 @@ cordova create hello com.example.hello HelloWorld
 > <br>plugins：插件
 > <br>platforms：生产目录，编译后会直接覆盖请注意这点
 
+依赖
+```
+npm i html-minifier uglify-js clean-css
+```
 添加平台
 ```
 cordova platform add android --save
