@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas width="256" height="256" id="testCanvas"></canvas>
+    <script type="text/javascript">
+        var canvas = document.getElementById("testCanvas");
+        var ctx = canvas.getContext("2d");
+        var w = canvas.attributes.width.value;
+        var h = canvas.attributes.height.value;
+        ctx.fillStyle = "rgb(0,0,0)";
+        ctx.fillRect(0, 0, w, h);
+        var imgdata = ctx.getImageData(0, 0, w, h);
+        var pixels = imgdata.data;
+        var i = 0;
+        for (var y = 0; y < h; y++)
+            for (var x = 0; x < w; x++) {
+                pixels[i++] = x / w * 255;
+                pixels[i++] = y / h * 255;
+                pixels[i++] = 0;
+                pixels[i++] = 255;
+            }
+        ctx.putImageData(imgdata, 0, 0);
+    </script>
+</body>
+
+</html>
