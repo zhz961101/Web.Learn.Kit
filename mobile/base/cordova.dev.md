@@ -171,3 +171,11 @@ config.xml
 <preference name="StatusBarBackgroundColor" value="transparent" />
 <preference name="StatusBarOverlaysWebView" value="true" />
 ```
+
+### 打包问题
+> Expecting UnicodeEscapeSequence -- uXXXX
+
+具体是什么问题还在排查...怀疑是node版本的问题...
+在没更新node之前都是好的
+
+难受

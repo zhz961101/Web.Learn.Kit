@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Swiper</title>
+  <style media="screen">
+  .swipe {
+overflow: hidden;
+position: relative;
+height: 200px;
+color: #fff;
+font-size: 30px;
+text-align: center;
+}
+.swipe-items-wrap {
+position: relative;
+overflow: hidden;
+height: 100%;
+}
+.swipe-items-wrap > div {
+position: absolute;
+transform: translateX(-100%);
+width: 100%;
+height: 100%;
+display: none;
+}
+.swipe-items-wrap > div.is-active {
+display: block;
+transform: none;
+}
+.swipe-item {
+line-height: 200px;
+}
+.slide1 {
+background-color: #0089dc;
+color: #fff;
+}
+.slide2 {
+background-color: #ffd705;
+color: #000;
+}
+.slide3 {
+background-color: #ff2d4b;
+color: #fff;
+}
+  </style>
+</head>
+<body>
+	<div class="swipe">
+        <div class="swipe-items-wrap" id="wrap">
+            <div class="swipe-item slide1">item 1</div>
+            <div class="swipe-item slide2">item 2</div>
+            <div class="swipe-item slide3">item 3</div>
+        </div>
+    </div>
+    <script src="./swiper.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<style>
+    #l2,#select{
+        display:none;
+    }
+    .box{
+        width:100px;
+        height:100px;
+        border:1px solid red;
+        display:none;
+    }
+    #select:checked ~:not(#l2) {
+        display: none;
+    }
+    #select:checked ~ label{
+        display:block;
+    }
+</style>
+<input type="checkbox" id="select">
+<label for="select">点我1！</label>
+<label id="l2" for="select">点我2！</label>
