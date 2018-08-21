@@ -36,6 +36,7 @@
 - not := λ a.a (λ bc.c) (λ de.d)
 - and := λ ab.ab (λ xy.y)
 - or := λ ab.a (λ xy.x) b
+
 人话：
 
     否，就是给一个接受两个参数的函数传送两个吞噬第二个参数的函数
@@ -48,10 +49,18 @@
 
 妙啊！
 
+- not := λ a b c.a c b
+- and := λ a b.a b a
+- or := λ ab.a a b
+
+服
+
+> 可是，这玩意有屁用？学过lisp的应该猜到了，那就是下面(pair)
+
 ### 条件
 - IS-ZERO := λ a.a false not false
-
-> 这玩意有屁用？学过lisp的应该猜到了，那就是下面
+- LEQ := x y. IS-ZERO (SUB m n)
+- EQ := x y. AND (LEQ x y) (LEQ y x)
 
 # pair
 > cons，就是lisp里的cons
@@ -65,8 +74,15 @@
 - fst := λ p. p true
 - snd  := λ p. p false
 
-
 结合boolean吞吐的效果，取出pair里的元素
+
+- cons := a b f.f a b
+- car := p.p TRUE
+- cdr := p.p FALSE
+- nil := x. TRUE => x1. (x2 y.x2) => x1 x2 y.x2
+- null := p.p (x y.FALSE)
+- len := Y (g c x. null x c (g ))
+
 
 # number
 
@@ -104,6 +120,7 @@
 > <br> := λ y. y ((λ x.y (x x)) (λ x.y (x x)))
 > <br> := λ y. y (y ((λ x.y (x x)) (λ x.y (x x))))
 > <br> := λ y. y(...y())
+
 娓娓道来
 
 `**lambda函数的函数名就是某个参数名**`
@@ -119,3 +136,22 @@ fact = metafact(metafact)
 # fact = (lambda fact: lambda n:1 if n is 0 else n * fact(fact)(n-1))(lambda fact: lambda n:1 if n is 0 else n * fact(fact)(n-1))
 ```
 啊！哦！居然！真是让人余音绕梁的代码
+
+### 不动点
+Y := f. (x.f(x x)) x.f(x x)
+
+
+# lambda组合子演算
+- S := x y z. (x z (y z))
+- K := x y. x
+- I := x. x
+
+    很正常的式子啊？咋滴？
+    i := S K K
+    猜猜这个是啥？
+    => x y z. (x z (y z)) (x y. x) (x y. x)
+    => z.((x y. x) z  ((x y. x) z))
+    => z. y.z y.z => z.z
+    ????????!!! 不是吧！
+    i := I
+    实际上，SK可以创造任意lambda运算表达式
