@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        * {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+            font-size: 100%;
+        }
+
+        body {
+            padding: 1em;
+        }
+
+        div.app {
+            display: inline-block;
+            margin: .5em;
+            width: 100px;
+            height: 100px;
+            background-color: AntiqueWhite;
+            /* text-align: center; */
+            /* padding: calc(50px - 1em); */
+        }
+
+        .app>div {
+            padding: 0;
+            margin: .1em;
+            width: 1em;
+            height: 1em;
+            background-color: black;
+            color: white;
+        }
+
+        .app div:nth-child(2n+1) {
+            float: left;
+        }
+
+        .app div:nth-child(2n+0) {
+            float: right;
+        }
+
+        #div5,
+        #div8 {
+            clear: both;
+        }
+
+        #app1 #div2 {
+            float: none;
+        }
+
+        /*  */
+
+        #div5,
+        #div8 {
+            clear: both;
+        }
+
+        #app2 #div2 {
+            float: none;
+        }
+
+        #app3 {
+            /* position: fixed; */
+            right: 0;
+            float: left;
+        }
+
+        .clearfix:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        .clearfix {
+            *+height: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app1" class="app">
+        <div id="div1">01</div>
+        <div id="div2">02</div>
+        <div id="div3">03</div>
+        <div id="div4">04</div>
+        <div id="div5" class="clearfix">05</div>
+        <div id="div6">06</div>
+        <div id="div7">07</div>
+        <div id="div8">08</div>
+        <div id="div9">09</div>
+        <div id="div10">10</div>
+    </div>
+    <div id="app2" class="app clearfix">
+        <div id="div1">01</div>
+        <div id="div2">02</div>
+        <div id="div3">03</div>
+        <div style="display: none;clear: both;"></div>
+        <div id="div4">04</div>
+        <div id="div5">05</div>
+        <div id="div6">06</div>
+        <div id="div7">07</div>
+        <div id="div8">08</div>
+        <div id="div9">09</div>
+        <div id="div10">10</div>
+    </div>
+    <div id="app3" class="app">
+        <div id="div1">01</div>
+        <div id="div2">02</div>
+        <div id="div3">03</div>
+        <div style="display: none;clear: both;"></div>
+        <div id="div4">04</div>
+        <div id="div5">05</div>
+        <div id="div6">06</div>
+        <div id="div7">07</div>
+        <div id="div8">08</div>
+        <div id="div9">09</div>
+        <div id="div10">10</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        div{
+            padding: 10px;
+            margin: 2px;
+            border: 2px solid blue;
+            background-color: green;
+            width: 10px;
+            height: 10px;
+            text-align: center;
+            color: white;
+        }
+        .border{
+            box-sizing: border-box;
+        }
+        .content{
+            box-sizing: content-box;
+        }
+        .default{
+
+        }
+    </style>
+</head>
+<body>
+    <div class="box default" ></div>
+    <div class="box content"></div>
+    <div class="box border"></div>
+    <script type="text/javascript">
+        const divs = document.querySelectorAll("div")
+        for (v of divs) {
+            v.innerText = v.offsetWidth
+            // v.innerText = v.clientWidth
+        }
+    </script>
+</body>
+</html>

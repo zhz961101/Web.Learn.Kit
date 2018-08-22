@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        *{
+            padding: 0;
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        body{
+            padding: 1em;
+        }
+        div{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: AntiqueWhite;
+        }
+        [other]::before{
+            content: "asdasd";
+        }
+        div[other]::before{
+            content: "-";
+        }
+        .blue[green]{
+            background-color: yellow;
+        }
+        [green]{
+            background-color: green;
+        }
+        .blue{
+            background-color: blue;
+        }
+        #red,#black{
+            background-color: black
+        }
+        #red{
+            background-color: red
+        }
+        #red{
+            background-color: Brown
+        }
+    </style>
+</head>
+<body>
+    <div id="red"></div>
+    <div id="black"></div>
+    <div id="black" class="blue"></div>
+    <div id="black" style="background-color:blue;"></div>
+    <div id="black" green></div>
+    <div id="green" class="blue" green></div>
+    <div id="green" class="blue"></div>
+    <div id="green" green></div>
+    <div id="other" other></div>
+    <div id="other" other></div>
+</body>
+</html>
