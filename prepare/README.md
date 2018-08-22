@@ -21,32 +21,32 @@ algo > qu > .html
     tips：这是作用优先级，也就是应用优先级的倒序
 
     比如
-    ```css
-    div{background-color: AntiqueWhite;}
-    [other]::before{content: "bar";}
-    div[other]::before{content: "-";}
-    .blue[green]{background-color: yellow;}
-    [green]{background-color: green;}
-    .blue{background-color: blue;}
-    #black{background-color: black}
-    #red{background-color: red}
-    #red{background-color: Brown}
+```css
+div                {background-color: AntiqueWhite;}
+[other]::before    {content: "bar";}
+div[other]::before {content: "-";}
+.blue[green]       {background-color: yellow;}
+[green]            {background-color: green;}
+.blue              {background-color: blue;}
+#black             {background-color: black}
+#red               {background-color: red}
+#red               {background-color: Brown}
 
-    div#app.other[foo]::after{}
-    ```
+div#app.other[foo]::after{}
+```
     以上选择器从上到下依次增强
 
 
 ##### **css reset**
     这个很简单
-    ```css
-    *{
-        padding: 0;
-        margin: 0;
-        border: 0;
-        box-sizing: border-box;
-    }
-    ```
+```css
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+```
     这就是，作用就是控制各端的样式统一
 
     这个很多人反对，我个人支持，跨平台统一view很重要
@@ -56,16 +56,17 @@ algo > qu > .html
 ##### **float定位原理**
     首先，float是相对的，很多时候float更适合一些相对定位的情况
     正常情况float不会让node阻挡文档流
-    `但是如果设置了overflow: auto或overflow: hidden，会使其内部的子元素形成块格式化上下文（Block Formatting Context）`(正常情况是行内格式化上下文，也就是横着排)
+ `但是如果设置了overflow: auto或overflow: hidden，会使其内部的子元素形成块格式化上下文（Block Formatting Context）`(正常情况是行内格式化上下文，也就是横着排)
     flex就是BFC，常用BFC布局就很容易对布局感觉混乱
 
     tips:BFC主要的作用就是把超出正常流的元素包到父级元素里
 
     清除浮动
-    - `<div style="display: none;clear: both;"></div>`
     - 父级设置overflow
     - 前面后面设置clear
     - 用::after
+    - 以及最简单的下面这种
+`<div style="display: none;clear: both;"></div>`
 
 
 ##### **简单总结下定位问题**
