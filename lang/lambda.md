@@ -6,6 +6,8 @@
 
 要说看懂，只有[这个](http://mindhacks.cn/2006/10/15/cantor-godel-turing-an-eternal-golden-diagonal/)
 
+> 直接看最终成果吧：[d5!l](https://github.com/zhzLuke96/d5-l)
+
 ### 思
 就说了一个东西，"函数就是一切"，或者lambda就是一切，或者"一切都是函数"
 ```
