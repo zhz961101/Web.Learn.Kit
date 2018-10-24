@@ -1,24 +1,24 @@
-class Future {
-    constructor(fn) {
-        this.callbacks = []
-        this.failbacks = []
-        this.init = fn
-    }
+var Future = function(fn){
+    this.callbacks = []
+    this.failbacks = []
+    this.init = fn
+}
+Future.prototype = {
     resolve(res) {
         if (this.callbacks.length > 0) {
             let ret = this.callbacks.shift()(res, this.resolve.bind(this), this.reject.bind(this));
             if (ret && ret.then && typeof ret.then == "function") ret.then(this.resolve.bind(this))
         }
-    }
+    },
     reject(res) {
         this.callbacks = [];
         if (this.failbacks.length > 0) {
             this.failbacks.shift()(res, this.resolve.bind(this), this.reject.bind(this));
         }
-    }
-    catch (fn) {
+    },
+    catch(fn) {
         this.failbacks.push(fn);
-    }
+    },
     then(fn) {
         this.callbacks.push(fn);
         if (typeof this.init == "function") {
@@ -28,7 +28,7 @@ class Future {
         return this;
     }
 }
-let flowall = function(future_arr) {
+Future.flowall = function(future_arr) {
     return new Future(resolve => {
         let result = []
         let waitlen = future_arr.length
@@ -39,7 +39,7 @@ let flowall = function(future_arr) {
         next()
     })
 }
-let raceall = function(future_arr) {
+Future.raceall = function(future_arr) {
     return new Future(resolve => {
         let result = []
         let waitlen = future_arr.length
@@ -49,58 +49,12 @@ let raceall = function(future_arr) {
         })
     })
 }
-let race = function(future_arr) {
+Future.race = function(future_arr) {
     return new Future(resolve => {
-        while (future_arr.length) future_arr.shift().then(fu_res => resolve(pr_res))
+        while (future_arr.length) future_arr.shift().then(fu_res => resolve(fu_res))
     })
 }
 
-// var a = new Future(function(resolve, reject) {
-//     // resolve("成功");
-//     setTimeout(function() {
-//         resolve("成功");
-//     }, 1000);
-// }).then(function(result, resolve, reject) {
-//     console.log(result)
-//     reject("失败")
-// }).catch(function(err) {
-//     console.log(err);
-// });
-
-let delay = cb => setTimeout(cb, Math.floor(Math.random() * 1000))
-let datas = []
-let aj_ = str => cb => new Future(res => delay(() => {
-    // console.log("doit_", str);
-    res(str);
-    cb && console.log(str + "_cb:", cb);
-    cb && datas.push(cb);
-    // console.log(str,datas)
-}))
-
-// new Future((r)=>r("?")).then(res=>console.log(res))
-
-let a_aj = aj_("头")
-let b_aj = aj_("中")
-let c_aj = aj_("尾")
-let abc = futuall([a_aj(), b_aj(), c_aj()]).then(res => console.log("!", res))
-// a_aj().then(b_aj).then(c_aj).then(()=>console.log(datas)).catch(err => console.log(err))
-// console.log(datas)
-// setTimeout(()=>console.log(datas),5000)
-// let aj_res = []
-// a_aj().then((res,resolve)=>{
-//     aj_res.push(res)
-//     console.log(aj_res,res)
-//     return b_aj()
-//     // return b_aj().then(resolve)
-// }).then((res,resolve)=>{
-//     aj_res.push(res)
-//     console.log(aj_res,res)
-//     return c_aj()
-//     // return c_aj().then(resolve)
-// }).then((res,resolve)=>{
-//     aj_res.push(res)
-//     console.log(aj_res,res)
-// })
 
 // function multiply(input) {
 //     return new Future(function (resolve, reject) {
@@ -121,7 +75,7 @@ let abc = futuall([a_aj(), b_aj(), c_aj()]).then(res => console.log("!", res))
 //     console.log('start new Promise...');
 //     resolve(123);
 // });
-//
+// console.log(p)
 // p.then(multiply)
 //  .then(add)
 //  .then(multiply)
@@ -129,3 +83,4 @@ let abc = futuall([a_aj(), b_aj(), c_aj()]).then(res => console.log("!", res))
 //  .then(function (result) {
 //     console.log('Got value: ' + result);
 // });
+//
