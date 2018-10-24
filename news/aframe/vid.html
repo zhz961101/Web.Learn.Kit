@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./aframe08.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <video id="video-src" autoplay loop="true" src="./T3.mp4"></video>
+            <img src="assets/white_grid_thin.png" id="grid" crossorigin="anonymous">
+        </a-assets>
+
+        <!-- CURSOR -->
+        <!-- <a-entity position="0 1.8 0">
+          <a-entity camera look-controls mouse-cursor>
+            <a-cursor fuse="true" timeout="500" color="#F0F0F0" scale="0.6 0.6 0.6">
+            </a-cursor>
+          </a-entity>
+        </a-entity> -->
+        <a-video src="#video-src"
+            geometry="primitive: cylinder; segmentsRadial: 6;segmentsHeight: 6; radius: 25;height: 15; openEnded: true; thetaStart: 150; thetaLength: 60"
+            rotation="0 0 0"
+            position="0 6 0" width="16" height="9"
+        ></a-video>
+        <a-entity
+            geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
+            material="src: #grid; repeat: 10000 10000; transparent: true; opacity:0.3;"></a-entity>
+        <a-sky color="#0c192a"></a-sky>
+    </a-scene>
+</body>
+</html>
