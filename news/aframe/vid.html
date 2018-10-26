@@ -10,7 +10,7 @@
 <body>
     <a-scene>
         <a-assets>
-            <video id="video-src" autoplay loop="true" src="./T3.mp4"></video>
+            <video id="video-src" autoplay loop="true" src="./Battlefield 1 Official Reveal Trailer.mp4"></video>
             <img src="assets/white_grid_thin.png" id="grid" crossorigin="anonymous">
         </a-assets>
 
@@ -23,8 +23,10 @@
         </a-entity> -->
         <a-video src="#video-src"
             geometry="primitive: cylinder; segmentsRadial: 6;segmentsHeight: 6; radius: 25;height: 15; openEnded: true; thetaStart: 150; thetaLength: 60"
-            rotation="0 0 0"
-            position="0 6 0" width="16" height="9"
+            rotation="0 180 0"
+            position="0 6 0"
+            scale="1 1 -1"
+            width="16" height="9"
         ></a-video>
         <a-entity
             geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
