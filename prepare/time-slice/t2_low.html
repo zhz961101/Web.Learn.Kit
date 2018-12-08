@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style media="screen">
+        #lsbox{
+            font-size: .1em;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,12 +24,14 @@
         var $ul = $('#lsbox')
         var $inp = $('#inp')
         $inp.addEventListener('input', () => {
-            for (var ch of $ul.children) {
-                if (ch.innerText != $inp.value) ch.innerText = $inp.value
+            var runing = true
+            while(runing){
+                for (var ch of $ul.children)if (ch.innerText != $inp.value) ch.innerText = $inp.value
                 var len = $inp.value.length + 1
+                while ($ul.children.length < len) $ul.appendChild(document.createElement("li"))
+                while ($ul.children.length > len) $ul.removeChild($ul.children[0])
+                if($ul.children.length == len && $ul.children[len-1].innerText == $inp.value)runing=false
             }
-            while ($ul.children.length < len) $ul.appendChild(document.createElement("li"))
-            while ($ul.children.length > len) $ul.removeChild($ul.children[0])
         })
         $inp.addEventListener('blur', () => {
             // slicer.stop()
